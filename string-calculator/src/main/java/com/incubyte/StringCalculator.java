@@ -5,7 +5,13 @@ public class StringCalculator {
 		if (numbers.isEmpty()) {
 			return 0;
 		}
-		String[] parts = numbers.split("[,\\n]");
+		String delimator = "[,\\n]";
+		if (numbers.startsWith("//")) {
+			int delimatorIndex = numbers.indexOf("\n");
+			delimator = numbers.substring(2, delimatorIndex);
+			numbers = numbers.substring(delimatorIndex + 1);
+		}
+		String[] parts = numbers.split(delimator);
 		int sum = 0;
 		for (String p : parts) {
 			sum += Integer.parseInt(p);
