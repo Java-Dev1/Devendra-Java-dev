@@ -30,8 +30,10 @@ public class StringCalculator {
 			int num = Integer.parseInt(p);
 			if (num < 0) {
 				negatives.add(num);
+
 			}
-			sum += num;
+			if (num <= 1000)
+				sum += num;
 		}
 
 		if (!negatives.isEmpty()) {
@@ -61,4 +63,5 @@ public class StringCalculator {
 	public void setAddListener(AddListener listener) {
 		this.listener = listener;
 	}
+
 }
