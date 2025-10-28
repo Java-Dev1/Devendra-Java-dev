@@ -11,4 +11,10 @@ public class StringCalculatorTest {
 		assertEquals(0, calc.add(""));
 	}
 
+	@Test
+	void shouldReturnNumberWhenSingleNumberGiven() {
+		StringCalculator calc = new StringCalculator();
+		assertEquals(5, calc.add("5"));
+	}
+
 }
