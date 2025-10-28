@@ -16,7 +16,20 @@ public class StringCalculator {
 		String delimiter = "[,\\n]";
 		if (numbers.startsWith("//")) {
 			int delimiterIndex = numbers.indexOf("\n");
-			delimiter = numbers.substring(2, delimiterIndex);
+			String delimiterPart = numbers.substring(2, delimiterIndex);
+
+			List<String> delimiters = new ArrayList<>();
+			if (delimiterPart.contains("[")) {
+				// Multiple delimiters
+				java.util.regex.Matcher m = java.util.regex.Pattern.compile("\\[(.*?)]").matcher(delimiterPart);
+				while (m.find()) {
+					delimiters.add(java.util.regex.Pattern.quote(m.group(1)));
+				}
+				delimiter = String.join("|", delimiters);
+			} else {
+				delimiter = java.util.regex.Pattern.quote(delimiterPart);
+			}
+
 			numbers = numbers.substring(delimiterIndex + 1);
 		}
 
