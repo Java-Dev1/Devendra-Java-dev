@@ -40,10 +40,25 @@ public class StringCalculator {
 			throw new RuntimeException(message);
 		}
 
+		if (listener != null) {
+			listener.onAdd(numbers, sum);
+		}
+
 		return sum;
 	}
 
 	public int getCalledCount() {
 		return callCount;
+	}
+
+	@FunctionalInterface
+	public interface AddListener {
+		void onAdd(String input, int result);
+	}
+
+	private AddListener listener;
+
+	public void setAddListener(AddListener listener) {
+		this.listener = listener;
 	}
 }

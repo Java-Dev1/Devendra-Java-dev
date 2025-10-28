@@ -56,4 +56,22 @@ public class StringCalculatorTest {
 		assertEquals(2, calc.getCalledCount());
 	}
 
+	@Test
+	void shouldTriggerEventAfterAddIsCalled() {
+		StringCalculator calc = new StringCalculator();
+
+		final String[] receivedInput = new String[1];
+		final int[] receivedResult = new int[1];
+
+		calc.setAddListener((input, result) -> {
+			receivedInput[0] = input;
+			receivedResult[0] = result;
+		});
+
+		calc.add("1,2");
+
+		assertEquals("1,2", receivedInput[0]);
+		assertEquals(3, receivedResult[0]);
+	}
+
 }
