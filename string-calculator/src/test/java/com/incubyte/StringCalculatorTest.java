@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class StringCalculatorTest {
 	@Test
 	void shouldReturnZeroForEmptyString() {
-		StringCalculator calc  = new StringCalculator();
+		StringCalculator calc = new StringCalculator();
 		assertEquals(0, calc.add(""));
 	}
 
